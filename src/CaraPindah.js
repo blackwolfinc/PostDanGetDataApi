@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export const CaraPindah = () => {
-  const [ParameterPindah, setParameterPindah] = useState(false);
+  const [ParameterPindah, setParameterPindah] = useState(1);
 
   const [Name, setName] = useState("")
    const [Id, setId] = useState("")
@@ -105,18 +105,17 @@ export const CaraPindah = () => {
 
   const DetailDefaul = () => {
     return <div>Detail Default</div>;
+
+    
   };
 
   return (
     <div>
-      {ParameterPindah ? TempletAll() : DetailMobil()}
-      <button
-        onClick={() => {
-          setParameterPindah(!ParameterPindah);
-        }}
-      >
-        Pindah Halaman{" "}
-      </button>
+      {ParameterPindah   ? TempletAll() : DetailMobil()}
+      {ParameterPindah === 1 ? <button onClick={()=>{ setParameterPindah(2)}}> Cari Mobil </button> : null}
+      {ParameterPindah  === 2? <button onClick={()=>{ setParameterPindah(3)}}>Edit</button> :  null}
+      {ParameterPindah  === 3? <button onClick={()=>{ setParameterPindah(1)}}>Edit ganteng</button> :  null}
+
     </div>
   );
 };
