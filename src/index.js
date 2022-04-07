@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CaraPindah } from './CaraPindah';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CaraPindah/>
   </React.StrictMode>,
   document.getElementById('root')
 );
