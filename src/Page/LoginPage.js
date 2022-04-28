@@ -24,13 +24,13 @@ export const LoginPage = () => {
   const handleSubmit = () => {
     // data yang akan di kirimkan
     let data = {
-      email: Email,
+      username: Email,
       password: Password,
     };
     // Config Pengiriman
     var config = {
       method: "post",
-      url: `${Host}/api/login`,
+      url: `${Host}/api/member/login`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,14 +41,17 @@ export const LoginPage = () => {
       .then(function (response) {
         // ketika dia berhasil dan tidak ada eror
         console.log(response)
-        sessionStorage.setItem("Token", response.data.token)
+        sessionStorage.setItem("Token", response.data.result.token)
         navigate(`/User`);
+        alert(response.data.message)
       })
       .catch(function (error) {
         // Ketika dia tidak berhasil / eror
-        alert("Username / Password Salah");
+        console.log(error)
+        // alert("Username / Password Salah");
       });
   };
+
 
   return (
     <div>
@@ -58,7 +61,7 @@ export const LoginPage = () => {
           handleChange(e);
         }}
         id="email"
-        type="email"
+        type="text"
       ></input>
       <h1>Password</h1>
       <input
@@ -68,6 +71,7 @@ export const LoginPage = () => {
         id="pass"
         type="password"
       ></input>
+        <br/>  <br/>
       <button
         onClick={() => {
           handleSubmit();
@@ -76,6 +80,10 @@ export const LoginPage = () => {
         {" "}
         Login
       </button>
+        <br/>
+        <br/>
+
+      <button onClick={()=>{navigate(`/Register`)}}> Register </button>
     </div>
   );
 };
